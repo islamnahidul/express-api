@@ -1,13 +1,15 @@
-import jwt from 'jsonwebtoken'
-import * as dotenv from 'dotenv'
-import {NextFunction, Request, Response} from "express";
+import jwt from "jsonwebtoken";
+import * as dotenv from "dotenv";
+import { NextFunction, Request, Response } from "express";
 import * as bcrypt from "bcrypt";
-
 
 dotenv.config();
 export const createJWT = (user) => {
-  return jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET)
-}
+  return jwt.sign(
+    { id: user.id, username: user.username },
+    process.env.JWT_SECRET
+  );
+};
 
 export const protect = (req, res, next) => {
   const bearer = req.headers.authorization;
@@ -20,7 +22,6 @@ export const protect = (req, res, next) => {
 
   const [, token] = bearer.split(" ");
   if (!token) {
-    console.log("here");
     res.status(401);
     res.send("Not authorized/ no token");
     return;

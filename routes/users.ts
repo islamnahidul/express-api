@@ -1,7 +1,7 @@
-import {NextFunction, Request, Response} from "express";
-import {createNewUser, signin} from "../handlers/user";
+import { NextFunction, Request, Response } from "express";
+import { createNewUser, signin } from "../handlers/user";
 
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 /* GET users listing. */
